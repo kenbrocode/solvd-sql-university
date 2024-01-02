@@ -91,9 +91,9 @@ public class Main {
             Exams exams = new Exams();
             exams.setExams(new ArrayList<>());
 
-            Exam exam = new Exam(1,simpleDateFormat.parse("2022-10-14"),1,8);
+            Exam exam = new Exam(1,simpleDateFormat.parse("2023-10-14"),1,8);
 
-            Exam exam2 = new Exam(2,simpleDateFormat.parse("2022-10-15"),2,8);
+            Exam exam2 = new Exam(2,simpleDateFormat.parse("2023-10-15"),2,8);
             exams.getExams().add(exam);
             exams.getExams().add(exam2);
 
@@ -197,7 +197,7 @@ public class Main {
             LOGGER.error(e.getMessage());
         }
 
-        Exam exam = new Exam(11, Date.valueOf("2022-03-29"),9,3);
+        Exam exam = new Exam(11, Date.valueOf("2023-03-29"),9,3);
 
         assert examService != null;
         examService.update(exam);
