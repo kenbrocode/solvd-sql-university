@@ -23,7 +23,7 @@ public class ExamDAO implements IBaseDAO<Exam>{
         try (PreparedStatement ps = c.prepareStatement(INSERT)) {
             ps.setDate(1, (Date) object.getDate());
             ps.setInt(2, object.getCourseId());
-            ps.setInt(2, object.getSubjectId());
+            ps.setInt(3, object.getSubjectId());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error("Failed inserting record",e);
