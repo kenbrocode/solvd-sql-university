@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration name="Console" status="WARN">
+
     <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
+
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+
         </Console>
 
-        <File name="all_logs_file" fileName="logs/alllogs.log">
-            <PatternLayout>
-                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
-            </PatternLayout>
-        </File>
+        <!--        <RollingFile name="fileLogger"
+                             fileName="target/logs/app.log"
+                             filePattern="logs/app-%d{yyyy-MM-dd}.log">
 
-        <File name="important_logs_file" fileName="logs/important.log">
-            <Filters>
-                <ThresholdFilter level="warn"  onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-            <PatternLayout>
-                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
-            </PatternLayout>
-        </File>
+                    <PatternLayout>
+                        <pattern>
+                            [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                        </pattern>
+                    </PatternLayout>
+
+                    <Policies>
+                        <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                        <SizeBasedTriggeringPolicy size="1MB"/>
+                    </Policies>
+
+                    &lt;!&ndash; Max 10 files will be created everyday &ndash;&gt;
+                    <DefaultRolloverStrategy max="10">
+                        <Delete basePath="logs" maxDepth="10">
+                            &lt;!&ndash; Delete all files older than 3 days &ndash;&gt;
+                            <IfLastModified age="3d"/>
+                        </Delete>
+                    </DefaultRolloverStrategy>
+
+                </RollingFile>-->
+
     </Appenders>
+
     <Loggers>
-        <Root level="trace">
-            <AppenderRef ref="console"/>
-            <AppenderRef ref="all_logs_file"/>
-            <AppenderRef ref="important_logs_file"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <!-- <AppenderRef ref="fileLogger"/>  -->
         </Root>
     </Loggers>
 </Configuration>
