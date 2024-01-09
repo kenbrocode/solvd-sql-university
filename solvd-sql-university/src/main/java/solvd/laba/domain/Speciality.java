@@ -34,7 +34,7 @@ public class Speciality {
         this.name = name;
     }
 
-    public List<Integer> getDepartmentIds() {
+    public CharSequence getDepartmentIds() {
         return departmentIds;
     }
 
