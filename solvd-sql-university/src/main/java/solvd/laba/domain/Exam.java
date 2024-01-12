@@ -1,26 +1,36 @@
 package solvd.laba.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.xml.bind.annotation.*;
+
+
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
 public class Exam {
 
-    private int id;
-    private Date date;
-    private List<Integer> courseIds;
-    private List<Integer> subjectIds;
 
-    public Exam(int id, Date date, List<Integer> courseIds, List<Integer> subjectIds) {
-        this.id = id;
-        this.date = date;
-        this.courseIds = courseIds;
-        this.subjectIds = subjectIds;
-    }
+    private int id;
+
+
+    private Date date;
+
+
+
+
+    private List<Grade> grades;
 
     public Exam() {
+    }
+
+    public Exam(int id, Date date, int courseId, int subjectId) {
+        this.id = id;
+        this.date = date;
 
     }
 
@@ -40,20 +50,14 @@ public class Exam {
         this.date = date;
     }
 
-    public List<Integer> getCourseIds() {
-        return courseIds;
+
+
+    public List<Grade> getGrades() {
+        return grades;
     }
 
-    public void setCourseIds(List<Integer> courseIds) {
-        this.courseIds = courseIds;
-    }
-
-    public List<Integer> getSubjectIds() {
-        return subjectIds;
-    }
-
-    public void setSubjectIds(List<Integer> subjectIds) {
-        this.subjectIds = subjectIds;
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
     @Override
@@ -62,8 +66,7 @@ public class Exam {
         return "Exam{" +
                 "id=" + id +
                 ", date=" + simpleDateFormat.format(date) +
-                ", courseIds=" + courseIds +
-                ", subjectIds=" + subjectIds +
+                ", grades=" + grades +
                 '}';
     }
 }

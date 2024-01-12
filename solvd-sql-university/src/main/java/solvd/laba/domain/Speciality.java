@@ -1,21 +1,27 @@
 package solvd.laba.domain;
 
 
+import jakarta.xml.bind.annotation.*;
+
 import java.util.List;
 
 public class Speciality {
 
     private int id;
+
+
     private String name;
-    private List<Integer> departmentIds;
+
+
+    private List<Subject> subjects;
 
     public Speciality() {
     }
 
-    public Speciality(int id, String name, List<Integer> departmentIds) {
+    public Speciality(int id, String name, List<Subject> subjects) {
         this.id = id;
         this.name = name;
-        this.departmentIds = departmentIds;
+        this.subjects = subjects;
     }
 
     public int getId() {
@@ -34,12 +40,12 @@ public class Speciality {
         this.name = name;
     }
 
-    public CharSequence getDepartmentIds() {
-        return departmentIds;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setDepartmentIds(List<Integer> departmentIds) {
-        this.departmentIds = departmentIds;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     @Override
@@ -47,7 +53,7 @@ public class Speciality {
         return "Speciality{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", departmentIds=" + departmentIds +
+                ", subjects=" + subjects +
                 '}';
     }
 }

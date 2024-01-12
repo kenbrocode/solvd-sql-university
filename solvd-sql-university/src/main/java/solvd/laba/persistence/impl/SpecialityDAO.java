@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialityDAO implements ISpecialityDAO {
+public class SpecialityDAO  {
     private static final Logger LOGGER = LogManager.getLogger(SpecialityDAO.class.getName());
     private static final ConnectionPool CONNECTION_POOL = ConnectionPool.getInstance();
     private static final String CREATE_QUERY = "INSERT INTO Specialities (name, departmentIds) VALUES (?, ?)";

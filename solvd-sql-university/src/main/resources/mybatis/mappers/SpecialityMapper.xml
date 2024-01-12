@@ -3,11 +3,11 @@
     <speciality>
         <id>1</id>
         <name>Informatics Engineering</name>
-        <departmentId>1</departmentId>
+        <subjects>1</subjects>
     </speciality>
     <speciality>
         <id>2</id>
         <name>Accountant</name>
-        <departmentId>1</departmentId>
+        <subjects>1</subjects>
     </speciality>
 </specialities>
