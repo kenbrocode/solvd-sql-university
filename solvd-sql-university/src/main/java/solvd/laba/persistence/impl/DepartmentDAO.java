@@ -34,8 +34,8 @@ public class DepartmentDAO implements IDepartmentDAO {
 
     @Override
     public void create(Department department) {
-        Connection connection = CONNECTION_POOL.getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY)) {
+        try (Connection connection = CONNECTION_POOL.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY)) {
 
             preparedStatement.setString(1, department.getName());
 
@@ -45,8 +45,6 @@ public class DepartmentDAO implements IDepartmentDAO {
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        } finally {
-            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 

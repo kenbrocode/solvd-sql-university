@@ -5,7 +5,6 @@ import solvd.laba.domain.Department;
 import java.util.List;
 
 public interface IDepartmentDAO extends CommonDAO<Department> {
-    void create(Department department);
 
     List<Department> getAll();
 
