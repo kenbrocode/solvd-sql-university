@@ -1,12 +1,13 @@
 package solvd.laba.persistence;
 
 import solvd.laba.domain.Department;
+import solvd.laba.domain.Speciality;
 
 import java.util.List;
 
 public interface IDepartmentDAO extends CommonDAO<Department> {
 
-    List<Department> getAll();
+    List<Speciality> getAll();
 
     void update(Department department);
 

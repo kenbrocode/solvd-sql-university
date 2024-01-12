@@ -1,6 +1,7 @@
 package solvd.laba.services;
 
 import solvd.laba.domain.Department;
+import solvd.laba.domain.Speciality;
 import solvd.laba.persistence.IDepartmentDAO;
 
 import java.util.List;
@@ -13,13 +14,14 @@ public class DepartmentService implements IDepartmentService {
         this.departmentDAO = departmentDAO;
     }
 
+
     @Override
     public void createDepartment(Department department) {
-        departmentDAO.create(department);
+
     }
 
     @Override
-    public List<Department> getAllDepartments() {
+    public List<Speciality> getAllSpecialities() {
         return departmentDAO.getAll();
     }
 
