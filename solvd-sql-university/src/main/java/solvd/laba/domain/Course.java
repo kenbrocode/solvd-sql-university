@@ -10,19 +10,20 @@ public class Course {
     private Date startDate;
     private String name;
     private double cost;
-    private List<Student> students;
+
     private List<Class> classes;
+    private List<Exam> exams;
 
     public Course() {
     }
 
-    public Course(int id, Date startDate, String name, double cost, List<Student> students, List<Class> classes) {
+    public Course(int id, Date startDate, String name, double cost, List<Class> classes, List<Exam> exams) {
         this.id = id;
         this.startDate = startDate;
         this.name = name;
         this.cost = cost;
-        this.students = students;
         this.classes = classes;
+        this.exams=exams;
     }
 
     public int getId() {
@@ -57,20 +58,20 @@ public class Course {
         this.cost = cost;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
     public List<Class> getClasses() {
         return classes;
     }
 
     public void setClasses(List<Class> classes) {
         this.classes = classes;
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
     }
 
     @Override
@@ -81,8 +82,8 @@ public class Course {
                 ", startDate=" + simpleDateFormat.format(startDate) +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
-                ", students=" + students +
                 ", classes=" + classes +
+                ", exams=" + exams +
                 '}';
     }
 }
