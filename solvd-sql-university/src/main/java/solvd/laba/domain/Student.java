@@ -3,7 +3,8 @@ package solvd.laba.domain;
 import java.util.List;
 
 public class Student {
-    private int id;
+
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -11,23 +12,11 @@ public class Student {
     private List<Course> courses;
     private List<Grade> grades;
 
-    public Student() {
-    }
-
-    public Student(int id, String firstName, String lastName, String email, List<Course> courses, List<Grade> grades) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.courses = courses;
-        this.grades = grades;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,15 +60,6 @@ public class Student {
         this.grades = grades;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", courses=" + courses +
-                ", grades=" + grades +
-                '}';
-    }
+
+
 }

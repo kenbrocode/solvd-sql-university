@@ -1,27 +1,31 @@
 package solvd.laba.parsers.model;
 
 
+import jakarta.xml.bind.annotation.*;
+import solvd.laba.domain.Specialty;
 
+import java.util.List;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Department {
 
-    private int id;
+    @XmlElement
+    private long id;
 
+    @XmlElement
     private String name;
 
-    public Department(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @XmlElementWrapper(name = "specialities")
+    @XmlElement(name = "specialty")
+    private List<Specialty> specialities;
 
-    public Department() {
 
-    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -33,11 +37,21 @@ public class Department {
         this.name = name;
     }
 
+
+    public List<Specialty> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(List<Specialty> specialities) {
+        this.specialities = specialities;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", specialities=" + specialities +
                 '}';
     }
 }

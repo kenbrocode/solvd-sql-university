@@ -23,10 +23,10 @@
                         <SizeBasedTriggeringPolicy size="1MB"/>
                     </Policies>
 
-                    &lt;!&ndash; Max 10 files will be created everyday &ndash;&gt;
+                    &lt;!&ndash; Max 10 parsers will be created everyday &ndash;&gt;
                     <DefaultRolloverStrategy max="10">
                         <Delete basePath="logs" maxDepth="10">
-                            &lt;!&ndash; Delete all files older than 3 days &ndash;&gt;
+                            &lt;!&ndash; Delete all parsers older than 3 days &ndash;&gt;
                             <IfLastModified age="3d"/>
                         </Delete>
                     </DefaultRolloverStrategy>

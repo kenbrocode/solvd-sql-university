@@ -3,6 +3,7 @@ package solvd.laba.persistence.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import solvd.laba.domain.Department;
+import solvd.laba.domain.Specialty;
 import solvd.laba.persistence.ConnectionPool;
 import solvd.laba.persistence.IDepartmentDAO;
 
@@ -15,28 +16,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentDAO implements IDepartmentDAO {
-
     private static final Logger LOGGER = LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private static final ConnectionPool CONNECTION_POOL = ConnectionPool.getInstance();
     private static final String CREATE_QUERY = "INSERT INTO departments (name) VALUES (?)";
-    private static final String GET_BY_ID_QUERY = "SELECT * FROM departments WHERE id = ?";
+    private static final String GET_BY_ID_QUERY =
+            "SELECT " +
+                    "   d.id AS department_id, d.name AS department_name, " +
+                    "   sp.id AS speciality_id, sp.name AS speciality_name " +
+                    "FROM departments d " +
+                    "LEFT JOIN specialities sp ON d.id = sp.department_id " +
+                    "WHERE d.id = ?";
     private static final String GET_ALL_QUERY = "SELECT * FROM departments";
-    private static final String UPDATE_QUERY = "UPDATE departments SET name = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM departments WHERE id = ?";
+    private static final String GET_SPECIALITIES_BY_DEPARTMENT_QUERY = "SELECT * FROM specialities WHERE department_id = ?";
+    private static final String DELETE_DEPARTMENT_QUERY = "DELETE FROM departments WHERE id = ?";
+    private static final String UPDATE_DEPARTMENT_QUERY = "UPDATE departments SET name = ? WHERE id = ?";
 
-    static Department mapDepartment(ResultSet result) throws SQLException {
-        Department department = new Department();
-        department.setId(result.getInt("id"));
-        department.setName(result.getString("name"));
+    public static List<Department> mapRow(ResultSet resultSet, List<Department> departments) throws SQLException {
+        List<Specialty> specialities = new ArrayList<>();
+        if (departments == null) {
+            departments = new ArrayList<>();
+        }
 
-        return department;
+        Long id = resultSet.getLong("department_id");
+
+        if (id != 0) {
+            Department department = findById(id, departments);
+            department.setName(resultSet.getString("department_name"));
+
+            specialities = SpecialtyDAO.mapRow(resultSet, specialities);
+            department.setSpecialities(specialities);
+
+            departments.add(department);
+        }
+
+        return departments;
+    }
+
+    private static Department findById(Long id, List<Department> departments) {
+        return departments.stream()
+                .filter(department -> department.getId() == id)
+                .findFirst()
+                .orElseGet(() -> {
+                    Department newDepartment = new Department();
+                    newDepartment.setId(id);
+                    departments.add(newDepartment);
+                    return newDepartment;
+                });
     }
 
     @Override
     public void create(Department department) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY)) {
-
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY)) {
             preparedStatement.setString(1, department.getName());
 
             preparedStatement.executeUpdate();
@@ -45,21 +76,25 @@ public class DepartmentDAO implements IDepartmentDAO {
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        } finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
-    public Department getById(Integer id) {
+    public Department getById(Long id) {
         Connection connection = CONNECTION_POOL.getConnection();
-        Department department = null;
+        List<Department> departments = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID_QUERY)) {
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setLong(1, id);
 
             ResultSet result = preparedStatement.executeQuery();
 
             if (result.next()) {
-                department = mapDepartment(result);
+
+                mapRow(result, departments);
+
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -67,19 +102,23 @@ public class DepartmentDAO implements IDepartmentDAO {
             CONNECTION_POOL.releaseConnection(connection);
         }
 
-        return department;
+        return departments.get(0);
     }
 
     @Override
     public List<Department> getAll() {
-        Connection connection = CONNECTION_POOL.getConnection();
         List<Department> departments = new ArrayList<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_QUERY)) {
+        Connection connection = CONNECTION_POOL.getConnection();
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_QUERY)) {
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
-                Department department = mapDepartment(result);
+                Department department = new Department();
+                department.setId(result.getLong("id"));
+                department.setName(result.getString("name"));
+                department.setSpecialities(getSpecialitiesByDepartment(department.getId()));
+
                 departments.add(department);
             }
         } catch (SQLException e) {
@@ -95,10 +134,9 @@ public class DepartmentDAO implements IDepartmentDAO {
     public void update(Department department) {
         Connection connection = CONNECTION_POOL.getConnection();
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
-
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DEPARTMENT_QUERY)) {
             preparedStatement.setString(1, department.getName());
-            preparedStatement.setInt(2, department.getId());
+            preparedStatement.setLong(2, department.getId());
 
             preparedStatement.executeUpdate();
 
@@ -112,11 +150,11 @@ public class DepartmentDAO implements IDepartmentDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         Connection connection = CONNECTION_POOL.getConnection();
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY)) {
-            preparedStatement.setInt(1, id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_DEPARTMENT_QUERY)) {
+            preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
 
@@ -127,5 +165,32 @@ public class DepartmentDAO implements IDepartmentDAO {
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
+    }
+
+    @Override
+    public List<Specialty> getSpecialitiesByDepartment(Long departmentId) {
+        List<Specialty> specialities = new ArrayList<>();
+        Connection connection = CONNECTION_POOL.getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_SPECIALITIES_BY_DEPARTMENT_QUERY)) {
+            preparedStatement.setLong(1, departmentId);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Specialty specialty = new Specialty();
+                specialty.setId(result.getLong("id"));
+                specialty.setName(result.getString("name"));
+                // Add other Specialty fields as needed
+
+                specialities.add(specialty);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        } finally {
+            CONNECTION_POOL.releaseConnection(connection);
+        }
+
+        return specialities;
     }
 }

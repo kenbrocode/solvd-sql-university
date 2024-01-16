@@ -1,13 +1,43 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<specialities>
-    <speciality>
-        <id>1</id>
-        <name>Informatics Engineering</name>
-        <subjects>1</subjects>
-    </speciality>
-    <speciality>
-        <id>2</id>
-        <name>Accountant</name>
-        <subjects>1</subjects>
-    </speciality>
-</specialities>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.path.to.your.SpecialtyDAO">
+
+    <resultMap id="specialtyResultMap" type="com.example.path.to.your.Specialty">
+        <id property="id" column="specialty_id"/>
+        <result property="name" column="specialty_name"/>
+        <!-- Assuming you have a One-to-Many relationship with subjects -->
+        <collection property="subjects" ofType="com.example.path.to.your.Subject" column="specialty_id" select="getSubjectsBySpecialty"/>
+    </resultMap>
+
+    <select id="getById" resultMap="specialtyResultMap">
+        SELECT id AS specialty_id, name AS specialty_name
+        FROM specialties
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAll" resultMap="specialtyResultMap">
+        SELECT id AS specialty_id, name AS specialty_name
+        FROM specialties
+    </select>
+
+    <insert id="create" parameterType="com.example.path.to.your.Specialty">
+        INSERT INTO specialties (name) VALUES (#{name})
+    </insert>
+
+    <update id="update" parameterType="com.example.path.to.your.Specialty">
+        UPDATE specialties SET name = #{name} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM specialties WHERE id = #{id}
+    </delete>
+
+    <select id="getSubjectsBySpecialty" resultMap="com.example.path.to.your.Subject.subjectResultMap">
+        SELECT id AS subject_id, name AS subject_name
+        FROM subjects
+        WHERE specialty_id = #{specialty_id}
+    </select>
+
+</mapper>

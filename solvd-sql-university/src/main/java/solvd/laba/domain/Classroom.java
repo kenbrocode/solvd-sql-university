@@ -3,25 +3,14 @@ package solvd.laba.domain;
 import java.util.List;
 
 public class Classroom {
-    private int id;
+    private long id;
     private int size;
 
-    private List<Class> classes;
-
-    public Classroom() {
-    }
-
-    public Classroom(int id, int size, List<Class> classes) {
-        this.id = id;
-        this.size = size;
-        this.classes = classes;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -41,12 +30,8 @@ public class Classroom {
         this.classes = classes;
     }
 
-    @Override
-    public String toString() {
-        return "Classroom{" +
-                "id=" + id +
-                ", size=" + size +
-                ", classes=" + classes +
-                '}';
-    }
+    private List<Class> classes;
+
+
+
 }

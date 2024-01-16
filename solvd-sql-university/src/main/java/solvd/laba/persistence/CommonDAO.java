@@ -2,7 +2,7 @@ package solvd.laba.persistence;
 
 public interface CommonDAO<T> {
 
-    T getById(Integer id);
+    T getById(Long id);
 
     void update(T object);
 }

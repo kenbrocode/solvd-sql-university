@@ -14,31 +14,15 @@ import java.util.List;
 
 public class Exam {
 
-
-    private int id;
-
-
+    private long id;
     private Date date;
-
-
-
-
     private List<Grade> grades;
 
-    public Exam() {
-    }
-
-    public Exam(int id, Date date, int courseId, int subjectId) {
-        this.id = id;
-        this.date = date;
-
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,8 +34,6 @@ public class Exam {
         this.date = date;
     }
 
-
-
     public List<Grade> getGrades() {
         return grades;
     }
@@ -60,13 +42,6 @@ public class Exam {
         this.grades = grades;
     }
 
-    @Override
-    public String toString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return "Exam{" +
-                "id=" + id +
-                ", date=" + simpleDateFormat.format(date) +
-                ", grades=" + grades +
-                '}';
-    }
+
+
 }

@@ -6,12 +6,14 @@ import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
+import java.util.Objects;
 
 
-public class Department {
+public class Specialty {
+
     private long id;
     private String name;
-    private List<Specialty> specialities;
+    private List<Subject> subjects;
 
 
     public long getId() {
@@ -22,6 +24,7 @@ public class Department {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -31,11 +34,13 @@ public class Department {
     }
 
 
-    public List<Specialty> getSpecialities() {
-        return specialities;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setSpecialities(List<Specialty> specialities) {
-        this.specialities = specialities;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
+
+
 }

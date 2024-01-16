@@ -1,27 +1,44 @@
 package solvd.laba.parsers.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import jakarta.xml.bind.annotation.*;
+import solvd.laba.domain.Exam;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "subject")
+@XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName("subject")
 public class Subject {
+    @JsonProperty
+    private long id;
 
-    private int id;
+    @JsonProperty
     private String name;
-    private List<Integer> specialityIds;
+
+    @XmlElementWrapper(name = "classes")
+    @XmlElement(name = "class")
+    @JsonProperty
+    private List<Class> classes;
+
+    @XmlElementWrapper(name = "exams")
+    @XmlElement(name = "exam")
+    @JsonProperty
+    private List<Exam> exams;
 
     public Subject() {
+        this.classes = new ArrayList<>();
+        this.exams = new ArrayList<>();
     }
 
-    public Subject(int id, String name, List<Integer> specialityIds) {
-        this.id = id;
-        this.name = name;
-        this.specialityIds = specialityIds;
-    }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -33,20 +50,19 @@ public class Subject {
         this.name = name;
     }
 
-    public List<Integer> getSpecialityIds() {
-        return specialityIds;
+    public List<Class> getClasses() {
+        return classes;
     }
 
-    public void setSpecialityIds(List<Integer> specialityIds) {
-        this.specialityIds = specialityIds;
+    public void setClasses(List<Class> classes) {
+        this.classes = classes;
     }
 
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", specialityIds=" + specialityIds +
-                '}';
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
     }
 }

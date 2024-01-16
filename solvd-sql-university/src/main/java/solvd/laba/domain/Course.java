@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Course {
-    private int id;
+    private long id;
     private Date startDate;
     private String name;
     private double cost;
@@ -14,23 +14,11 @@ public class Course {
     private List<Class> classes;
     private List<Exam> exams;
 
-    public Course() {
-    }
-
-    public Course(int id, Date startDate, String name, double cost, List<Class> classes, List<Exam> exams) {
-        this.id = id;
-        this.startDate = startDate;
-        this.name = name;
-        this.cost = cost;
-        this.classes = classes;
-        this.exams=exams;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,16 +62,5 @@ public class Course {
         this.exams = exams;
     }
 
-    @Override
-    public String toString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return "Course{" +
-                "id=" + id +
-                ", startDate=" + simpleDateFormat.format(startDate) +
-                ", name='" + name + '\'' +
-                ", cost=" + cost +
-                ", classes=" + classes +
-                ", exams=" + exams +
-                '}';
-    }
+
 }

@@ -1,7 +1,7 @@
 package solvd.laba.services;
 
 import solvd.laba.domain.Department;
-import solvd.laba.domain.Speciality;
+import solvd.laba.domain.Specialty;
 
 import java.util.List;
 
@@ -9,9 +9,11 @@ import java.util.List;
 public interface IDepartmentService {
     void createDepartment(Department department);
 
-    List<Speciality> getAllSpecialities();
+    Department getDepartmentById(Long id);
+
+    List<Department> getAllDepartments();
 
     void updateDepartment(Department department);
 
-    void deleteDepartment(int id);
+    void deleteDepartment(Long id);
 }
