@@ -1,5 +1,6 @@
 package solvd.laba.parsers.json;
 
+import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -10,11 +11,11 @@ import java.time.format.DateTimeFormatter;
 
 public class JsonLocalDateAdapter extends JsonDeserializer<LocalDate> {
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy-MM-dd");
-
     @Override
-    public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, IOException {
+    public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
 
-        return LocalDate.parse(jsonParser.getText(), formatter);
+
+        return LocalDate.parse(jsonParser.getText());
+
     }
 }
