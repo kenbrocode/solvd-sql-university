@@ -60,6 +60,16 @@ public class Student {
         this.grades = grades;
     }
 
+    // Additional methods...
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
 }

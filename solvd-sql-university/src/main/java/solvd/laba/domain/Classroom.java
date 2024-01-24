@@ -5,6 +5,7 @@ import java.util.List;
 public class Classroom {
     private long id;
     private int size;
+    private List<Class> classes;
 
     public long getId() {
         return id;
@@ -30,8 +31,13 @@ public class Classroom {
         this.classes = classes;
     }
 
-    private List<Class> classes;
+    // Additional methods...
 
-
-
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "id=" + id +
+                ", size=" + size +
+                '}';
+    }
 }

@@ -7,6 +7,7 @@ public class Subject {
     private String name;
     private List<Class> classes;
     private List<Exam> exams;
+
     public long getId() {
         return id;
     }
@@ -37,6 +38,14 @@ public class Subject {
 
     public void setExams(List<Exam> exams) {
         this.exams = exams;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 
 }

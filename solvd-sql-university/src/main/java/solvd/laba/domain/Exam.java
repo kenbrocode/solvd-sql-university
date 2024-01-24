@@ -42,6 +42,13 @@ public class Exam {
         this.grades = grades;
     }
 
+    // Additional methods...
 
-
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "id=" + id +
+                ", date=" + date +
+                '}';
+    }
 }

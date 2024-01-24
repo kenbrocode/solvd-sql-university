@@ -5,7 +5,6 @@ import java.util.List;
 public class Grade {
 
     private long id;
-
     private int grade;
 
     public long getId() {
@@ -24,6 +23,13 @@ public class Grade {
         this.grade = grade;
     }
 
+    // Additional methods...
 
-
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "id=" + id +
+                ", grade=" + grade +
+                '}';
+    }
 }

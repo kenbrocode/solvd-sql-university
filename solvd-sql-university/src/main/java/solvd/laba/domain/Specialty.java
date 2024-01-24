@@ -15,7 +15,6 @@ public class Specialty {
     private String name;
     private List<Subject> subjects;
 
-
     public long getId() {
         return id;
     }
@@ -23,7 +22,6 @@ public class Specialty {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -33,7 +31,6 @@ public class Specialty {
         this.name = name;
     }
 
-
     public List<Subject> getSubjects() {
         return subjects;
     }
@@ -42,5 +39,11 @@ public class Specialty {
         this.subjects = subjects;
     }
 
-
+    @Override
+    public String toString() {
+        return "Specialty{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

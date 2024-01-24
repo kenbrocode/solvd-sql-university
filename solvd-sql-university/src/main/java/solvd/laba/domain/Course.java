@@ -10,7 +10,6 @@ public class Course {
     private Date startDate;
     private String name;
     private double cost;
-
     private List<Class> classes;
     private List<Exam> exams;
 
@@ -62,5 +61,15 @@ public class Course {
         this.exams = exams;
     }
 
+    // Additional methods...
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", name='" + name + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Class {
     private long id;
-
     private Date date;
+
     public long getId() {
         return id;
     }
@@ -24,8 +24,14 @@ public class Class {
         this.date = date;
     }
 
+    // Additional methods...
 
-
-
+    @Override
+    public String toString() {
+        return "Class{" +
+                "id=" + id +
+                ", date=" + date +
+                '}';
+    }
 
 }

@@ -7,8 +7,8 @@ public class Professor {
     private String firstName;
     private String lastName;
     private String degree;
-
     private List<Class> classes;
+
     public long getId() {
         return id;
     }
@@ -49,7 +49,16 @@ public class Professor {
         this.classes = classes;
     }
 
+    // Additional methods...
 
-
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", degree='" + degree + '\'' +
+                '}';
+    }
 
 }
