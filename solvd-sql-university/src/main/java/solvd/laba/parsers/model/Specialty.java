@@ -39,7 +39,7 @@ public class Specialty {
     }
 
 
-    public List<solvd.laba.domain.Subject> getSubjects() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
