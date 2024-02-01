@@ -1,6 +1,6 @@
 package com.solvd.university.dao;
 
-import com.solvd.university.model.Allergy;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
