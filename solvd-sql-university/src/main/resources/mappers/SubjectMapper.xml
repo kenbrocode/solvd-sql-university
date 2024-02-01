@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.SubjectRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO subjects(title,decription) VALUES (#{title}, #{description})
+    </insert>
+
+
+    <select id="findById" resultMap="SubjectResultMap">
+        SELECT title, decription FROM  subjects WHERE id = #{id}
+    </select>
+
+    <resultMap id="SubjectResultMap" type="com.solvd.university.model.Subject" autoMapping="false">
+        <result column="title" property="title"/>
+        <result column="decription" property="description"/>
+    </resultMap>
+
+</mapper>

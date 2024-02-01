@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.FacultyRepository">
+
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO faculties(title, description, dekan, university_id)
+        VALUES (#{title}, #{description}, #{dekan}, #{universityId})
+    </insert>
+    
+    <select id="findAll" resultMap="FacultyResultMap">
+        SELECT title as faculty_title
+    </select>
+
+
+    <resultMap id="FacultyResultMap" type="com.solvd.university.model.Faculty" autoMapping="false">
+        <result column="faculty_title" property="title"/>
+    </resultMap>
+
+
+</mapper>

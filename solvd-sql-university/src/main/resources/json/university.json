@@ -1,0 +1,46 @@
+{
+  "id": 1,
+  "title": "VNU",
+  "rector": "Polina",
+  "faculties": [
+    {
+      "id": 1,
+      "title": "FIOT",
+      "description": "Very interesting faculty",
+      "dekan": "Stanislav",
+      "dateCreatingFaculty": "2011-05-02",
+      "cafedries": [
+        {
+          "id": 1,
+          "title": "Programming cafedra",
+          "specialities": [
+            {
+              "id": 1,
+              "title": "126",
+              "description": "Very interesting speciality about programming"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Mathematic cafedra",
+          "specialities": [
+            {
+              "id": 2,
+              "title": "131",
+              "description": "very interesting speciality about mathematic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "IPSA",
+      "description": "Very interesting faculty",
+      "dekan": "Anna",
+      "dateCreatingFaculty": "1993-08-01",
+      "cafedries": []
+    }
+    ]
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.solvd.university.dao.StudentRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO students(name, surname, phone_number, email, health_record_id) values (#{name}, #{surname},
+        #{phoneNumber}, #{email}, #{healthRecordId})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM students WHERE id = #{id}
+    </delete>
+
+    <select id="findAll" resultMap="StudentResultMap">
+        SELECT students.name, students.surname, health_records.medical_report
+        FROM students
+        LEFT JOIN health_records
+        ON students.health_record_id =  health_records.id;
+    </select>
+    
+    <resultMap id="StudentResultMap" type="com.solvd.university.model.Student" autoMapping="false">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"/>
+        <result column="surname" property="surname"/>
+        <result column="email" property="email"/>
+        <result column="health_record_id" property="healthRecordId"></result>
+    </resultMap>
+    
+</mapper>

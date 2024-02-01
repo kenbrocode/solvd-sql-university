@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.PaymentRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO payment(bank_title, price_id, student_id, data) VALUES (#{bankTitle}, #{priceId},
+                            #{studentId}, #{data})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM payment WHERE id = #{id}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,5 @@
+<speciality xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="../xsd/speciality.xsd" id="1">
+    <title>122</title>
+    <description>Very interesting speciality</description>
+</speciality>

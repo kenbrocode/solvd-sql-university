@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.ExamRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO exams(title, data, descripton, speciality_id, time) VALUES (#{title}, #{data}, #{description},
+                            #{specialityId}, #{time})
+    </insert>
+
+
+    <select id="findById" resultMap="ExamResultMap">
+        SELECT title, data  FROM  exams WHERE id = #{id}
+    </select>
+
+    <resultMap id="ExamResultMap" type="com.solvd.university.model.Exam" autoMapping="false">
+        <result column="title" property="title"/>
+        <result column="data" property="data"/>
+    </resultMap>
+
+</mapper>
