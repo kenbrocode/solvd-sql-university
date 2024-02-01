@@ -28,9 +28,9 @@ public class DOMParser {
     public static void main(String[] args) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         File fileUniversity = new File
-                ("D:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\university.xml");
+                ("C:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\university.xml");
         File fileSubject = new File
-                ("D:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\subject.xml");
+                ("C:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\subject.xml");
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
