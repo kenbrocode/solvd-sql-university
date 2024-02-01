@@ -16,9 +16,9 @@ public class JAXBParser {
 
     public static void main(String[] args) {
         File fileUniversity = new File
-                ("D:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\university.xml");
+                ("C:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\university.xml");
         File fileSubject = new File
-                ("D:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\subject.xml");
+                ("C:\\Course_testimg\\University\\University\\src\\main\\resources\\xml\\subject.xml");
 
 
         universityParse(fileUniversity);

@@ -7,7 +7,7 @@ public class SubjectGenerator {
             subjectPreaprator = new ExamSubjectDecorator(subjectPreaprator);
         }
         if (kursova) {
-            subjectPreaprator = new KursovaSubjectDecorator(subjectPreaprator);
+            subjectPreaprator = new SubjectDecorator(subjectPreaprator);
         }
 
         subjectPreaprator.createSubject();

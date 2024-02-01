@@ -1,9 +1,9 @@
 package com.solvd.university.patterns.decorator;
 
-public class KursovaSubjectDecorator implements SubjectPreaprator {
+public class SubjectDecorator implements SubjectPreaprator {
     private final SubjectPreaprator subjectPreaprator;
 
-    public KursovaSubjectDecorator(SubjectPreaprator subjectPreaprator) {
+    public SubjectDecorator(SubjectPreaprator subjectPreaprator) {
         this.subjectPreaprator = subjectPreaprator;
     }
 
