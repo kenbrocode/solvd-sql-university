@@ -2,7 +2,7 @@ package com.solvd.university.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solvd.university.parsers.MyAdapter;
-import com.solvd.university.parsers.SecondAdapter;
+
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
