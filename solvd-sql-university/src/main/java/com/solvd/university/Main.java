@@ -23,15 +23,10 @@ public class Main {
         List<Faculty> faculties;
         List<Cafedra> cafedries;
         List<Speciality> specialities;
-        List<Allergy> allergies;
-        List<Vaccine> vaccines;
 
 
         //Creating instances
 
-        HealthRecord healthRecord = new HealthRecord("VERY HEALTHY");
-        Allergy allergy = new Allergy("Flowers", "Akwater", new Date(2023 - 12 - 11), null);
-        Vaccine vaccine = new Vaccine("Stolbnyak", "Vaccine from stolbnyak", new Date(2011 - 05 - 06), null);
 
         University university = new University("Kyiv NATIONAL Collage", "Anton");
         Faculty faculty = new Faculty("KRT", "Good faculty", "Misha", null);
@@ -54,22 +49,17 @@ public class Main {
         faculties = List.of(faculty);
         cafedries = List.of(cafedra);
         specialities = List.of(speciality, speciality2);
-        vaccines = List.of(vaccine);
-        allergies = List.of(allergy);
+
 
         university.setFaculties(faculties);
         faculty.setCafedries(cafedries);
         cafedra.setSpecialities(specialities);
-        healthRecord.setAllergies(allergies);
-        healthRecord.setVaccines(vaccines);
 
         //Creating services
 
-        Service allergyService = new AllergyServiceImpl();
+
 
         Service cafedraService = new CafedraServiceImpl();
-
-        Service healthRecordService = new HealthRecordServiceImpl();
 
         Service examService = new ExamServiceImpl();
 
@@ -89,8 +79,6 @@ public class Main {
 
         Service universityService = new UniversityServiceImpl();
 
-        Service vaccineService = new VaccineServiceImpl();
-
         ManyToManyService studentsExamsService = new StudentsExamsServiceImpl();
 
         ManyToManyService subjectsSpecialitiesService = new SubjectSpecialityServiceImpl();
@@ -103,12 +91,7 @@ public class Main {
         priceService.create(price);
         paymentService.create(payment);
 
-        healthRecordService.create(healthRecord);
 
-        allergy.setHealthRecordId(healthRecord.getId());
-        allergyService.create(allergy);
-        vaccine.setHealthRecordId(healthRecord.getId());
-        vaccineService.create(vaccine);
 
 
         universityService.create(university);
@@ -124,7 +107,7 @@ public class Main {
         price.setSpecialityId(speciality.getId());
         priceService.create(price);
 
-        student.setHealthRecordId(healthRecord.getId());
+
         studentService.create(student);
         professor.setCafedraId(cafedra.getId());
         professorService.create(professor);
@@ -145,9 +128,7 @@ public class Main {
 
         //logging
 
-        LOGGER.info("Allergy id " + allergy.getId());
-        LOGGER.info("Vaccine id " + vaccine.getId());
-        LOGGER.info("Health Record id " + healthRecord.getId());
+
         LOGGER.info("University id " + university.getId());
         LOGGER.info("Faculty id " + faculty.getId());
         LOGGER.info("Cafedra id " + cafedra.getId());
@@ -160,12 +141,7 @@ public class Main {
 
         //other methods to database
 
-        allergy.setPills("Akwa");
-        vaccine.setData(new Date(2017 - 05 - 04));
 
-        healthRecordService.findById(12L);
-        allergyService.update(allergy);
-        vaccineService.update(vaccine);
         List<University> universities = universityService.findAll();
         LOGGER.info(universities.get(0));
         LOGGER.info(university.getFaculties().get(0));

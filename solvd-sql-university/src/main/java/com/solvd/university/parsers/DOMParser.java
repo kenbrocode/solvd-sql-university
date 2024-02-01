@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jakarta.xml.bind.DatatypeConverter.parseDate;
+
 
 public class DOMParser {
     private static final Logger LOGGER = LogManager.getLogger("Parser");

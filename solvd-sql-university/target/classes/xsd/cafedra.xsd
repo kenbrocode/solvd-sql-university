@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+    <xs:element name="cafedra">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="specialities" type="SpecialitiesType"/>
+                <xs:element name="title" type="xs:string"/>
+                <xs:element name="description" type="xs:string"/>
+            </xs:all>
+            <xs:attribute name="id" type="xs:long" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SpecialitiesType">
+        <xs:sequence>
+            <xs:element name="specialityRef" type="SpecialityRefType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SpecialityRefType">
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+
+</xs:schema>

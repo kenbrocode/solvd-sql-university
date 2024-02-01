@@ -1,0 +1,9 @@
+<faculty xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../xsd/faculty.xsd" id="1">
+    <title>PTI</title>
+    <description>Physically Technical Institute</description>
+    <dekan>Oleg</dekan>
+    <cafedries>
+        <cafedraRef id="1"/>
+    </cafedries>
+</faculty>

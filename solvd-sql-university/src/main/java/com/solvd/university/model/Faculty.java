@@ -1,7 +1,6 @@
 package com.solvd.university.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.solvd.university.parsers.MyAdapter;
 import com.solvd.university.parsers.SecondAdapter;
 import jakarta.xml.bind.annotation.*;
@@ -24,7 +23,6 @@ public class Faculty {
     private List<Cafedra> cafedries;
 
     @XmlJavaTypeAdapter(MyAdapter.class)
-    @JsonDeserialize(using = SecondAdapter.class)
     private Date dateCreatingFaculty;
 
     public Faculty() {

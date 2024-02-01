@@ -1,5 +1,7 @@
 package com.solvd.university.model;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.xml.bind.annotation.*;
 

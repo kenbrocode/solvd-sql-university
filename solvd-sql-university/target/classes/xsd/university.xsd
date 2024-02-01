@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:complexType name="SpecialityType">
+        <xs:all>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="SpecialitiesType">
+        <xs:sequence>
+            <xs:element name="speciality" type="SpecialityType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CafedraType">
+        <xs:all>
+            <xs:element name="specialities" type="SpecialitiesType"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="CafedriesType">
+        <xs:sequence>
+            <xs:element name="cafedra" type="CafedraType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FacultyType">
+        <xs:all>
+            <xs:element name="cafedries" type="CafedriesType"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="dekan" type="xs:string"/>
+            <xs:element name="dateCreatingFaculty" type="xs:date"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="FacultiesType">
+        <xs:sequence>
+            <xs:element name="faculty" type="FacultyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="universityType">
+        <xs:all>
+            <xs:element name="faculties" type="FacultiesType"></xs:element>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="rector" type="xs:string"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:long" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="university" type="universityType"/>
+</xs:schema>

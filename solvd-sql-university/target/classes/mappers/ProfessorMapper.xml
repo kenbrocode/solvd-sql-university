@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.ProfessorRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO proffessors(name, surname, cafedra_id) values (#{name},#{surname},#{cafedraId})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM proffessors WHERE id = #{id}
+    </delete>
+
+    <select id="findAll" resultMap="ProfessorResultMap">
+        SELECT name , surname, cafedra_id * FROM proffessors
+    </select>
+
+    <resultMap id="ProfessorResultMap" type="com.solvd.university.model.Professor" autoMapping="false">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"/>
+        <result column="surname" property="surname"/>
+        <result column="cafedra_id" property="cafedraId"/>
+    </resultMap>
+
+</mapper>

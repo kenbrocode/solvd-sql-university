@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.university.dao.PriceRepository">
+
+    <insert id="create"  keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO prices(cost, speciality_id) VALUES (#{cost}, #{specialityId})
+    </insert>
+
+    <select id="findById" resultMap="PriceResultMap">
+        SELECT cost, speciality_id FROM  prices WHERE id = #{id}
+    </select>
+
+    <resultMap id="PriceResultMap" type="com.solvd.university.model.Price" autoMapping="false">
+        <result column="cost" property="cost"/>
+        <result column="speciality_id" property="specialityId"/>
+    </resultMap>
+
+</mapper>

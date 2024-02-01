@@ -1,0 +1,8 @@
+<cafedra xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../xsd/cafedra.xsd" id="1">
+    <title>MC</title>
+    <description>Mathematic Cafedra</description>
+    <specialities>
+        <specialityRef id="1"/>
+    </specialities>
+</cafedra>
